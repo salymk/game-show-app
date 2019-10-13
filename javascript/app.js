@@ -122,6 +122,7 @@ qwerty.addEventListener('click', (e) => {
       }
     }
   }
+ checkWin();
 });
 
 
@@ -130,5 +131,16 @@ qwerty.addEventListener('click', (e) => {
   this function will check whether the game has been won or lost
 */
 function checkWin () {
+  let letter = document.querySelectorAll('.letter');
+  let show = document.querySelectorAll('.show');
 
+  if (letter.length === show.length) {
+    overlay.classList.add('win');
+    title.textContent = "YOU WIN!";
+    overlay.style.display = 'flex';
+  } else if (missed > 4) {
+    overlay.classList.add('lose');
+    title.textContent = "YOU LOST!";
+    overlay.style.display = 'flex';
+  }
 }
