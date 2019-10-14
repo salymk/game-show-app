@@ -119,6 +119,15 @@ button {
   font-size: var(--font-size-medium);
 }
 
+.play__again {
+  display: none;
+  padding: 8px;
+  margin: 50px auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-size: var(--font-size-medium);
+}
+
 /* Overlay */
 
 #overlay {
