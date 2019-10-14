@@ -1,9 +1,12 @@
- //Variables
+  //Variables
 const qwert = document.querySelector('#qwert');
 const phrase = document.querySelector('#phrase');
 let missed = 0;
 const startGame = document.querySelector('.btn__reset');
 const overlay = document.querySelector('#overlay');
+const title = document.querySelector('.title');
+const playAgain = document.querySelector('.play__again');
+
 
 
 let phraseList = [
@@ -122,7 +125,7 @@ qwerty.addEventListener('click', (e) => {
       }
     }
   }
- checkWin();
+  checkWin();
 });
 
 
@@ -138,9 +141,19 @@ function checkWin () {
     overlay.classList.add('win');
     title.textContent = "YOU WIN!";
     overlay.style.display = 'flex';
+    resetGame()
   } else if (missed > 4) {
     overlay.classList.add('lose');
     title.textContent = "YOU LOST!";
     overlay.style.display = 'flex';
+    resetGame();
   }
+}
+
+function resetGame() {
+  playAgain.addEventListener('click', () => {
+    startGame.style.display = 'flex';
+    missed = 0;
+    addPhraseToDisplay(phraseArray);
+  });
 }
