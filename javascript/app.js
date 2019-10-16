@@ -1,11 +1,11 @@
-  //Variables
+ //Variables
 const qwert = document.querySelector('#qwert');
 const phrase = document.querySelector('#phrase');
 let missed = 0;
 const startGame = document.querySelector('.btn__reset');
 const overlay = document.querySelector('#overlay');
 const title = document.querySelector('.title');
-const playAgain = document.querySelector('.play__again');
+// const playAgain = document.querySelector('.play__again');
 
 
 
@@ -82,7 +82,6 @@ function checkLetter (button) {
     If there’s a match, the function adds the “show” class to the list item
     containing that letter, stores the matching letter inside of a variable,
     and returns that letter.
-
     If a match wasn’t found, the function returns null.
     */
     if (button === letters[i].textContent.toLowerCase()) {
@@ -150,10 +149,35 @@ function checkWin () {
   }
 }
 
+//Deletes the current phrase with innerHTML
+//and then creates a newUl and appends to the phrase
+function resetPhrase () {
+  phrase.innerHTML = '';
+  let newUl = document.createElement('ul');
+  phrase.appendChild(newUl);
+}
+
+//This function resets all of the buttons that were chosen and
+//removes their 'disabled' attribute & 'class' attribute
+function resetButtons () {
+  let chosenButtons = document.querySelectorAll('BUTTON');
+
+  for (let i = 0; i < chosenButtons.length; i++) {
+    chosenButtons[i].removeAttribute('disabled');
+    chosenButtons[i].removeAttribute('class');
+  }
+}
+
 function resetGame() {
-  playAgain.addEventListener('click', () => {
-    startGame.style.display = 'flex';
-    missed = 0;
-    addPhraseToDisplay(phraseArray);
-  });
+  startGame.textContent = 'Play Again!';
+  //set the missed variable back to 0
+  missed = 0;
+  //restore the liveHeart images
+  //remove the disabled attribute from the buttons
+  resetButtons();
+  //remove all of the li elements from the #phrase ul
+  resetPhrase();
+  //then generate a new phrase
+  getRandomPhraseAsArray(phraseList);
+  addPhraseToDisplay(phraseArray);
 }
