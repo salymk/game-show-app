@@ -1,4 +1,4 @@
- //Variables
+//Variables
 const qwert = document.querySelector('#qwert');
 const phrase = document.querySelector('#phrase');
 let missed = 0;
@@ -149,12 +149,16 @@ function checkWin () {
   }
 }
 
-//Deletes the current phrase with innerHTML
-//and then creates a newUl and appends to the phrase
+//Delete current phrase
+//Create new ul element
+//Then append it to the phrase
+//Create a new phrase and pass it to the addPhraseToDisplay function
 function resetPhrase () {
   phrase.innerHTML = '';
   let newUl = document.createElement('ul');
   phrase.appendChild(newUl);
+  let newPhrase = getRandomPhraseAsArray(phraseList);
+  addPhraseToDisplay(newPhrase);
 }
 
 //This function resets all of the buttons that were chosen and
@@ -173,11 +177,13 @@ function resetGame() {
   //set the missed variable back to 0
   missed = 0;
   //restore the liveHeart images
+  let hearts = document.querySelectorAll('img');
+  for (let i = 0; i < hearts.length; i++) {
+    hearts[i].src = 'images/liveHeart.png';
+  }
   //remove the disabled attribute from the buttons
   resetButtons();
   //remove all of the li elements from the #phrase ul
   resetPhrase();
   //then generate a new phrase
-  getRandomPhraseAsArray(phraseList);
-  addPhraseToDisplay(phraseArray);
 }
